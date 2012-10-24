@@ -1,21 +1,20 @@
 require 'test_helper'
 
-Field=Vpim::DirectoryInfo::Field
+Field=Vcard::DirectoryInfo::Field
 
 class FieldTest < Test::Unit::TestCase
 
   def test_encode_decode_text()
     enc_in = "+\\\\+\\n+\\N+\\,+\\;+\\a+\\b+\\c+"
-    dec = Vpim.decode_text(enc_in)
+    dec = Vcard.decode_text(enc_in)
     #puts("<#{enc_in}> => <#{dec}>")
     assert_equal("+\\+\n+\n+,+;+a+b+c+", dec)
-    enc_out = Vpim.encode_text(dec)
+    enc_out = Vcard.encode_text(dec)
     should_be = "+\\\\+\\n+\\n+\\,+\\;+a+b+c+"
     # Note a, b, and c are allowed to be escaped, but shouldn't be and
     # aren't in output
     #puts("<#{dec}> => <#{enc_out}>")
     assert_equal(should_be, enc_out)
-
   end
 
   def test_field4
@@ -84,7 +83,7 @@ class FieldTest < Test::Unit::TestCase
       'g.:',
       ':v',
     ].each do |line|
-      assert_raises(Vpim::InvalidEncodingError) { Field.decode0(line) }
+      assert_raises(Vcard::InvalidEncodingError) { Field.decode0(line) }
     end
   end
 
@@ -141,11 +140,11 @@ class FieldTest < Test::Unit::TestCase
   end
 
   def test_field_wrapping
-    assert_equal("0:x\n",             Vpim::DirectoryInfo::Field.create('0', 'x' * 1).encode(4))
-    assert_equal("0:xx\n",            Vpim::DirectoryInfo::Field.create('0', 'x' * 2).encode(4))
-    assert_equal("0:xx\n x\n",        Vpim::DirectoryInfo::Field.create('0', 'x' * 3).encode(4))
-    assert_equal("0:xx\n xx\n",       Vpim::DirectoryInfo::Field.create('0', 'x' * 4).encode(4))
-    assert_equal("0:xx\n xxxx\n",     Vpim::DirectoryInfo::Field.create('0', 'x' * 6).encode(4))
-    assert_equal("0:xx\n xxxx\n x\n", Vpim::DirectoryInfo::Field.create('0', 'x' * 7).encode(4))
+    assert_equal("0:x\n",             Vcard::DirectoryInfo::Field.create('0', 'x' * 1).encode(4))
+    assert_equal("0:xx\n",            Vcard::DirectoryInfo::Field.create('0', 'x' * 2).encode(4))
+    assert_equal("0:xx\n x\n",        Vcard::DirectoryInfo::Field.create('0', 'x' * 3).encode(4))
+    assert_equal("0:xx\n xx\n",       Vcard::DirectoryInfo::Field.create('0', 'x' * 4).encode(4))
+    assert_equal("0:xx\n xxxx\n",     Vcard::DirectoryInfo::Field.create('0', 'x' * 6).encode(4))
+    assert_equal("0:xx\n xxxx\n x\n", Vcard::DirectoryInfo::Field.create('0', 'x' * 7).encode(4))
   end
 end

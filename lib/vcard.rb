@@ -1,13 +1,3 @@
-=begin
-  Copyright (C) 2008 Sam Roberts
-
-  This library is free software; you can redistribute it and/or modify it
-  under the same terms as the ruby language itself, see the file COPYING for
-  details.
-=end
-
-#:main:README
-#:title:vPim - vCard and iCalendar support for Ruby
 module Vcard
   # Exception used to indicate that data being decoded is invalid, the message
   # should describe what is invalid.

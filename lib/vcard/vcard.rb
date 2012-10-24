@@ -658,6 +658,7 @@ module Vcard
       end
 
       string.force_encoding(Encoding::UTF_8)
+
       entities = Vcard.expand(Vcard.decode(string))
 
       # Since all vCards must have a begin/end, the top-level should consist

@@ -1,6 +1,6 @@
 module Vcard
 
-  # Attachments are used by both iCalendar and vCard. They are either a URI or
+  # Attachments are used by both vCard. They are either a URI or
   # inline data, and their decoded value will be either a Uri or a Inline, as
   # appropriate.
   #
@@ -20,7 +20,7 @@ module Vcard
     # bytes of the value, and return the appropriate MIME type when format
     # isn't defined.
     #
-    # iCalendar and vCard put the format in different parameters, and the
+    # vCard put the format in different parameters, and the
     # default kind of value is different.
     def Attachment.decode(field, defkind, fmtparam) #:nodoc:
       format = field.pvalue(fmtparam) || ''
